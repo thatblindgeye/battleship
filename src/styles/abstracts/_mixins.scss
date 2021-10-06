@@ -1,0 +1,114 @@
+@use 'breakpoints' as *;
+@use 'functions' as *;
+@use 'colors' as *;
+
+/*
+ * @include at-least(size: string)
+ * The string passed in can either be from the breakpoints map in
+ * the _breakpoints file, or a number ending with a length suffix
+ * to create a custom breakpoint.
+ *
+ * e.g. 
+ * @include breakpoint-at-least(small)
+ * or
+ * @include breakpoint-at-least(38em)
+ */
+@mixin at-least($size) {
+  $existing-breakpoint: map-get($breakpoints, $size);
+
+  @if $existing-breakpoint {
+    @media only screen and (min-width: $existing-breakpoint) {
+      @content;
+    }
+  } @else {
+    @media only screen and (min-width: $size) {
+      @content;
+    }
+  }
+}
+
+@mixin wrap-long-words {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  /* Keep break-all for IE compatibility */
+  -ms-word-break: break-all;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+@mixin font-spacing($letter-spacing: 0.12rem, $word-spacing: 0.16rem) {
+  letter-spacing: $letter-spacing;
+  word-spacing: $word-spacing;
+}
+
+@mixin flex($direction: row, $justify: center, $align: center, $wrap: no-wrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+/*
+ * @mixin generate-theme-mappings(theme-name: string, new-theme-map: map)
+ * e.g. generate-theme-mappings(light, $light);
+ *
+ * 1. Adds a theme name to the themes list.
+ * 2. Generates list of theme variables and adds to existing map.
+ *
+ * Used in the _theme-utilities file.
+ */
+@mixin generate-theme-mappings($theme-name, $new-theme-map) {
+  /* 1 */
+  $themes: append($themes, $theme-name, $separator: comma) !global;
+
+  /* 2 */
+  @each $key, $value in $new-theme-map {
+    // adds key/value from new-theme-map if key is not in theme-values map
+    @if not map-has-key($theme-values, $key) {
+      $theme-values: map-merge(
+        $theme-values,
+        (
+          $key: (
+            $theme-name: $value,
+          ),
+        )
+      ) !global;
+    }
+    // adds value to existing key map
+    @else {
+      $existing-key-map: map-get($theme-values, $key);
+      // if theme variable doesn't exist, add it
+      @if not map-get($existing-key-map, $theme-name) {
+        $new-key-map: map-merge(
+          $existing-key-map,
+          (
+            $theme-name: $value,
+          )
+        );
+        $theme-values: map-merge(
+          $theme-values,
+          (
+            $key: $new-key-map,
+          )
+        ) !global;
+      }
+    }
+  }
+}
+
+/*
+ * Auto-generates lists of css variables for use in var() statements,
+ * splitting the lists as separate classes on the :root element
+ */
+@mixin generate-theme-variables {
+  @each $theme in $themes {
+    &.#{$theme} {
+      @each $key, $val in $theme-values {
+        @if (theme-exists($key, $theme, $theme-values)) {
+          --#{$key}: #{get-theme-value($key, $theme, $theme-values)};
+        }
+      }
+    }
+  }
+}

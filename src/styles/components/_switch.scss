@@ -1,0 +1,42 @@
+.switch {
+  --base-size: 1rem;
+  --large: 1.25;
+  --x-large: 1.5;
+
+  background-color: var(--color-bg-base);
+  border: 1px solid var(--color-border-switch);
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  width: 3.5rem;
+
+  &:focus,
+  &:hover {
+    box-shadow: 0 0 0 2px var(--color-border-primary);
+  }
+
+  &[aria-checked='false'] {
+    justify-content: flex-start;
+  }
+
+  &[aria-checked='true'] {
+    justify-content: flex-end;
+  }
+
+  // Size modifiers for switch icon
+  &__icon--base {
+    height: var(--base-size);
+    width: var(--base-size);
+  }
+
+  &__icon--large {
+    height: calc(var(--base-size) * var(--large));
+    width: calc(var(--base-size) * var(--large));
+  }
+
+  &__icon--x-large {
+    height: calc(var(--base-size) * var(--x-large));
+    width: calc(var(--base-size) * var(--x-large));
+  }
+}

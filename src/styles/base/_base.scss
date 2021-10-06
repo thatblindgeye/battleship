@@ -1,0 +1,53 @@
+@use '../abstracts/' as *;
+@use '../utilities/theme-utilities' as *;
+
+:root {
+  @include generate-theme-variables;
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-bg-base);
+  height: 100%;
+  overflow-x: hidden;
+
+  &.menu-open {
+    overflow-y: scroll;
+    position: fixed;
+  }
+}
+
+/**
+  * Removes default focus styles for elements 
+  * (MANUALLY ADD FOCUS STYLES)
+  */
+* {
+  &:focus {
+    outline: none;
+  }
+}
+
+button,
+label,
+[role='button'],
+[role='checkbox'],
+[role='switch'],
+[type='date'] {
+  &:disabled {
+    cursor: not-allowed;
+    opacity: $disabled;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+input[aria-disabled='true'],
+input:disabled {
+  opacity: $disabled;
+
+  &:hover {
+    cursor: not-allowed;
+  }
+}

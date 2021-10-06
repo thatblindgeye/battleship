@@ -1,0 +1,70 @@
+@use '../abstracts' as *;
+
+/*
+ * 1) Prevents input element from overflowing off screen when text zoom is
+ * enabled in a browser and the viewport width is too small. Also prevents the
+ * input from growing too large as the viewport width increases.
+*/
+
+%field-properties {
+  background-color: var(--color-bg-input);
+  border: 2px solid transparent;
+  color: var(--text-primary);
+  display: block;
+  width: min(100%, 400px); // 1
+  padding: 0.4rem;
+  outline: 1px solid var(--color-border-input);
+  transition: border 200ms linear;
+
+  &:focus {
+    border: 2px solid var(--color-border-input-focus);
+  }
+}
+
+.input {
+  margin-bottom: 1.5rem;
+
+  &__field {
+    @extend %field-properties;
+  }
+
+  &__error {
+    color: var(--color-message-error);
+    margin-top: 5px;
+    width: min(100%, 400px); // 1
+  }
+
+  &__instructions {
+    display: block;
+    margin-top: 10px;
+    width: min(100%, 400px); // 1
+  }
+}
+
+.date-range {
+  margin: 1.5rem 0 3rem;
+  &__container {
+    margin-bottom: 1.5rem;
+    width: min(10rem, 300px); // 1
+  }
+
+  &__field {
+    @extend %field-properties;
+    transition: opacity 200ms linear;
+
+    &::-webkit-calendar-picker-indicator {
+      filter: var(--color-date-input-icon);
+      margin-left: 0;
+    }
+  }
+}
+
+.c-textarea {
+  &__field {
+    @extend %field-properties;
+  }
+
+  & + .input {
+    margin-top: 1.5rem;
+  }
+}

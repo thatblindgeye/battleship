@@ -1,0 +1,28 @@
+/**
+ * 1. Utility class to prevent transitions and animations on elements
+ *    for users who don't have a setting to do so enabled on their 
+ *    computer/browser. Smooth scrolling on the :root element will
+ *    be disabled via Javascript.
+ *
+ * 2. Media query that will prevent transitions, animations, and 
+ *    smooth scrolling for users who have such a setting enabled
+ *    on their computer/browser.
+ */
+
+/* 1 */
+.disable-motion {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* 2 */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto !important;
+  }
+
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

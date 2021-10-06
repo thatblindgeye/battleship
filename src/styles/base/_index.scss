@@ -1,0 +1,7 @@
+@forward 'sanitize';
+@forward 'base';
+@forward 'font-face';
+@forward 'typography';
+
+// boilerplate code including resets and typographic rules; commonly used throughout project
+// Keep in this order so rules get added to styles.scss in correct order

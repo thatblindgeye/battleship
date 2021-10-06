@@ -1,0 +1,85 @@
+$dark-surface: (
+  // Text button, Standard side sheet
+  00dp: rgb(18, 18, 18),
+  // Search bar (resting elevation), Card (resting elevation), Switch
+  01dp: rgb(30, 30, 30),
+  // Contained button (resting elevation)
+  02dp: rgb(35, 35, 35),
+  // Refresh indicator Search bar (scrolled state)
+  03dp: rgb(37, 37, 37),
+  // Top app bar (scrolled state), Top app bar (resting elevation)
+  04dp: rgb(39, 39, 39),
+  // Floating action button (resting elevation), Snackbar
+  06dp: rgb(44, 44, 44),
+  // Standard bottom sheet, Standard side sheet,
+  // Bottom navigation bar, Bottom app bar,
+  // Contained button (pressed state)
+  // Menus and sub menus,
+  // Card (when picked up)
+  08dp: rgb(46, 46, 46),
+  // Floating action button (pressed)
+  12dp: rgb(51, 51, 51),
+  // Modal bottom sheet, Modal side sheet, Navigation drawer
+  16dp: rgb(54, 54, 54),
+  // Dialog
+  24dp: rgb(56, 56, 56)
+);
+
+$neutral: (
+  50: rgb(255, 255, 255),
+  75: rgb(242, 242, 242),
+  100: rgb(232, 232, 232),
+  200: rgb(217, 217, 217),
+  300: rgb(196, 196, 196),
+  400: rgb(158, 158, 158),
+  500: rgb(122, 122, 122),
+  600: rgb(84, 84, 84),
+  700: rgb(66, 66, 66),
+  800: rgb(38, 38, 38),
+  850: rgb(15, 15, 15),
+  900: rgb(0, 0, 0),
+);
+
+/* indigo theme */
+$blindgeye: (
+  50: rgb(242, 227, 242),
+  100: rgb(225, 186, 227),
+  // Logo: pupil color
+  200: rgb(206, 143, 209),
+  300: rgb(185, 96, 190),
+  400: rgb(169, 60, 175),
+  500: rgb(155, 18, 165),
+  600: rgb(142, 15, 159),
+  // Logo: background color
+  700: rgb(121, 9, 149),
+  800: rgb(106, 5, 143),
+  900: rgb(74, 0, 128),
+);
+
+$primary: (
+  50: rgb(240, 230, 255),
+  100: rgb(215, 193, 254),
+  200: rgb(187, 148, 255),
+  300: rgb(158, 104, 255),
+  400: rgb(132, 65, 255),
+  500: rgb(102, 0, 255),
+  600: rgb(88, 0, 249),
+  700: rgb(64, 0, 241),
+  800: rgb(27, 0, 236),
+  900: rgb(0, 0, 233),
+);
+
+// Replace map name with actual color scheme,
+// e.g. complementary, analogous, etc.
+$secondary: (
+  // 50: ,
+  // 100: ,
+  // 200: ,
+  // 300: ,
+  // 400: ,
+  // 500: ,
+  // 600: ,
+  // 700: ,
+  // 800: ,
+  // 900:
+);

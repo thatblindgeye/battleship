@@ -1,0 +1,25 @@
+@use '../abstracts/mixins' as *;
+
+.l-flex {
+  display: flex;
+
+  &--column {
+    @extend .l-flex;
+    flex-direction: column;
+  }
+
+  &--column-reverse {
+    @extend .l-flex;
+    flex-direction: column-reverse;
+  }
+
+  &--row {
+    @extend .l-flex;
+    flex-direction: row;
+  }
+
+  &--row-reverse {
+    @extend .l-flex;
+    flex-direction: row-reverse;
+  }
+}

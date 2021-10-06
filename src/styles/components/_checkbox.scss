@@ -1,0 +1,73 @@
+@use '../abstracts' as *;
+
+.checkbox {
+  --base-size: 1rem;
+  --large: 1.25;
+  --x-large: 1.5;
+  --xx-large: 1.75;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  line-height: 1.25;
+  max-width: max-content;
+
+  &__field {
+    border: 2px solid var(--color-border-input);
+    border-radius: 5px;
+    flex-shrink: 0;
+
+    // Size modifiers for checkbox field
+    &--base {
+      @extend .checkbox__field;
+      height: var(--base-size);
+      width: var(--base-size);
+    }
+
+    &--large {
+      @extend .checkbox__field;
+      height: calc(var(--base-size) * var(--large));
+      width: calc(var(--base-size) * var(--large));
+    }
+
+    &--x-large {
+      @extend .checkbox__field;
+      height: calc(var(--base-size) * var(--x-large));
+      width: calc(var(--base-size) * var(--x-large));
+    }
+
+    &--xx-large {
+      @extend .checkbox__field;
+      height: calc(var(--base-size) * var(--xx-large));
+      width: calc(var(--base-size) * var(--xx-large));
+    }
+  }
+
+  &__icon {
+    display: none;
+    height: 100%;
+    width: 100%;
+  }
+
+  &:focus-within .checkbox__field {
+    background-color: var(--color-bg-checkbox-hover);
+    outline: 2px solid var(--color-outline-focus-primary);
+    outline-offset: 2px;
+  }
+
+  &:hover .checkbox__field {
+    background-color: var(--color-bg-checkbox-hover);
+  }
+
+  &__hidden {
+    opacity: 0;
+
+    &:checked ~ .checkbox__field {
+      background-color: inherit;
+
+      & .checkbox__icon {
+        display: block;
+      }
+    }
+  }
+}

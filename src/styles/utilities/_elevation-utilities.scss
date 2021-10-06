@@ -1,0 +1,8 @@
+@use '../abstracts/' as *;
+
+// Creates a u-elevation- class for each dp-key in _elevation file
+@each $dp, $shadow in $shadows {
+  .elevation--#{$dp} {
+    box-shadow: #{$shadow};
+  }
+}

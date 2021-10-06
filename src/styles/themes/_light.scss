@@ -1,0 +1,53 @@
+@use '../abstracts/' as *;
+
+/* light primary: 500 tonal range */
+/* light primary-variant: +/- 200 of primary */
+/* light secondary: 500 tonal range */
+/* light secondary-variant: +/- 200 of primary */
+
+$light: (
+  color-bg-accessibility-bar: color($neutral, 100),
+  color-bg-alert: mix(color($blindgeye, 200), white, 20%),
+  color-bg-base: color($neutral, 75),
+  color-bg-checkbox-focus: color($neutral, 300),
+  color-bg-footer: color($blindgeye, 100),
+  color-bg-header: color($blindgeye, 50),
+  color-bg-input: color($neutral, 50),
+  color-bg-modal: color($blindgeye, 50),
+  color-bg-modal-mask: color($neutral, 900, 0.5),
+  color-border-btn-delete: rgba(126, 0, 0, 0.6),
+  color-border-btn-focus: color($blindgeye, 900, 0.75),
+  color-border-btn-text: color($blindgeye, 900, 0.6),
+  color-border-divider: color($blindgeye, 800, 0.5),
+  color-border-input: color($neutral, 700, 0.6),
+  color-border-input-focus: color($neutral, 900),
+  color-border-invalid: rgb(255, 32, 32),
+  color-border-primary: color($blindgeye, 700),
+  color-btn-contained: color($blindgeye, 200),
+  color-btn-contained-focus: color($blindgeye, 400),
+  color-btn-delete: rgb(158, 0, 0),
+  color-btn-outline: color($blindgeye, 200),
+  color-btn-outline-focus: color($blindgeye, 400),
+  color-btn-text: color($neutral, 850),
+  color-form-required: rgb(150, 0, 0),
+  // Change calendar icon in Chrome
+  color-icon-date-input: invert(0%),
+  color-link-active: color($blindgeye, 700, 0.38),
+  color-link-focus: color($blindgeye, 700),
+  color-link-unvisited: rgb(20, 20, 255),
+  color-link-visited: rgb(116, 0, 194),
+  color-message-error: rgb(128, 0, 0),
+  color-message-info: rgb(71, 167, 245),
+  color-message-success: rgb(76, 175, 80),
+  color-message-warning: rgb(255, 236, 61),
+  color-outline-primary-focus: color($neutral, 900, 0.6),
+  color-text-btn-contained: color($blindgeye, 50),
+  color-text-inverted: color($neutral, 75),
+  color-text-logo: color($blindgeye, 800),
+  color-text-msg-error: color($neutral, 50),
+  color-text-msg-info: color($neutral, 900),
+  color-text-msg-success: color($neutral, 900),
+  color-text-msg-warning: color($neutral, 800),
+  color-text-primary: color($blindgeye, 900),
+  color-text-primary-disabled: color($neutral, 850, $disabled),
+);

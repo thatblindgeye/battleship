@@ -1,0 +1,53 @@
+@use '../abstracts/' as *;
+
+/* dark primary: 200 tonal range */
+/* dark primary-variant: 500 tonal range */
+/* dark secondary: 50-200 tonal range */
+/* dark secondary-variant: 50-200 tonal range */
+
+$dark: (
+  color-bg-accessibility-bar: branded-dark-surface($primary, 200, 04dp),
+  color-bg-alert: branded-dark-surface($blindgeye, 400, 08dp),
+  color-bg-base: branded-dark-surface($blindgeye, 50, 01dp),
+  color-bg-checkbox-focus: color($neutral, 700),
+  color-bg-footer: branded-dark-surface($blindgeye, 900, 02dp),
+  color-bg-header: branded-dark-surface($blindgeye, 50, 01dp),
+  color-bg-input: branded-dark-surface($blindgeye, 400, 02dp),
+  color-bg-modal: branded-dark-surface($blindgeye, 50, 08dp),
+  color-bg-modal-mask: color($neutral, 900, 0.5),
+  color-border-btn-delete: rgba(255, 117, 117, 0.6),
+  color-border-btn-focus: color($blindgeye, 100, 0.5),
+  color-border-btn-text: color($blindgeye, 50, 0.4),
+  color-border-divider: color($blindgeye, 100, 0.25),
+  color-border-input: color($blindgeye, 200, 0.25),
+  color-border-input-focus: color($blindgeye, 200),
+  color-border-invalid: rgb(221, 119, 119),
+  color-border-primary: color($blindgeye, 50),
+  color-btn-contained: color($blindgeye, 700),
+  color-btn-contained-focus: color($blindgeye, 500),
+  color-btn-delete: rgb(255, 117, 117),
+  color-btn-outline: color($blindgeye, 400, 0.6),
+  color-btn-outline-focus: color($blindgeye, 400),
+  color-btn-text: color($neutral, 75),
+  color-form-required: rgb(255, 170, 184),
+  // Change calendar icon in Chrome
+  color-icon-date-input: invert(100%),
+  color-link-active: color($blindgeye, 50, 0.38),
+  color-link-focus: color($blindgeye, 50),
+  color-link-unvisited: rgb(153, 153, 255),
+  color-link-visited: rgb(204, 128, 255),
+  color-message-error: rgb(223, 154, 167),
+  color-message-info: rgb(144, 202, 249),
+  color-message-success: rgb(165, 214, 167),
+  color-message-warning: rgb(255, 245, 157),
+  color-outline-primary-focus: color($neutral, 50, 0.6),
+  color-text-btn-contained: color($blindgeye, 50),
+  color-text-inverted: color($neutral, 850),
+  color-text-logo: color($blindgeye, 200),
+  color-text-msg-error: color($neutral, 900),
+  color-text-msg-info: color($neutral, 900),
+  color-text-msg-success: color($neutral, 900),
+  color-text-msg-warning: color($neutral, 900),
+  color-text-primary: color($blindgeye, 50),
+  color-text-primary-disabled: color($neutral, 75, $disabled),
+);

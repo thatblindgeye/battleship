@@ -1,0 +1,9 @@
+@use '../abstracts/' as *;
+@use '../themes/' as *;
+
+$themes: ();
+$theme-values: ();
+
+// run for each theme file in the themes folder
+@include generate-theme-mappings('light', $light);
+@include generate-theme-mappings('dark', $dark);

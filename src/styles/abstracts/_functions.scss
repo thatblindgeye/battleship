@@ -1,0 +1,40 @@
+@use 'colors' as *;
+
+// Returns color from specified color map in _colors file
+@function color($color-map, $shade, $opacity: 1) {
+  $color: map-get($color-map, $shade);
+
+  @return rgba($color, $opacity);
+}
+
+/* 
+ * Creates a branded dark surface for dark theme using $dark-surface map and 
+ * chosen color map from _colors file
+ */
+@function branded-dark-surface($color-map, $shade, $dp, $percent: 8%) {
+  $surface: map-get($dark-surface, $dp);
+  $color: map-get($color-map, $shade);
+
+  @return mix($color, $surface, $percent);
+}
+
+/*
+ * @function theme-exists
+ * Checks if VALUE key exists within theme-values map in _theme-utilities file.
+ * If so, checks if a theme-key exists within that VALUE keys' map.
+ *
+ * @function theme-exists && @function get-theme-value
+ * theme-values map (from _theme-utilities file) gets passed in in the 
+ * generate-theme-variables mixin in _mixins file
+ */
+@function theme-exists($key, $theme, $map) {
+  @if map-has-key($map, $key) {
+    @return map-has-key(map-get($map, $key), $theme);
+  }
+  @return null;
+}
+
+// Returns a value for a theme-key within the theme-values map
+@function get-theme-value($key, $theme, $map) {
+  @return map-get(map-get($map, $key), $theme);
+}
