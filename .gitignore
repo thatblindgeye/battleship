@@ -13,4 +13,3 @@
 /.vscode
 /ignore
 npm-debug.log*
-*.test.js
