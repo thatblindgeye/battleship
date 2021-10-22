@@ -13,3 +13,4 @@
 /.vscode
 /ignore
 npm-debug.log*
+/coverage

@@ -1,9 +1,9 @@
-import shipFactory from './shipFactory';
+import shipFactory from '../shipFactory';
 
 describe('Ship Factory', function () {
   let testShip;
 
-  beforeEach(() => {
+  beforeAll(() => {
     testShip = shipFactory(2);
   });
 
