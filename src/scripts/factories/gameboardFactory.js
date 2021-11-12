@@ -6,6 +6,7 @@ export default function gameboardFactory(size) {
 
   const createBoard = () => {
     let totalCells;
+    // Insert error to limit board size?
     if (size) {
       totalCells = size * size;
     } else {
@@ -23,5 +24,13 @@ export default function gameboardFactory(size) {
   const board = createBoard();
   const getBoard = () => board;
 
-  return { getBoard };
+  const placeShip = (startPosition, ship) => {
+    const length = ship.getLength();
+
+    for (let i = 0; i < length; i++) {
+      board[startPosition + i] = { ship, attacked: false };
+    }
+  };
+
+  return { getBoard, placeShip };
 }
