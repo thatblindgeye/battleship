@@ -24,13 +24,22 @@ export default function gameboardFactory(size) {
   const board = createBoard();
   const getBoard = () => board;
 
+  let placeHorizontal = true;
+  const changePlacementDirection = () => {
+    placeHorizontal = !placeHorizontal;
+  };
+
   const placeShip = (startPosition, ship) => {
     const length = ship.getLength();
 
     for (let i = 0; i < length; i++) {
-      board[startPosition + i] = { ship, attacked: false };
+      if (placeHorizontal) {
+        board[startPosition + i] = { ship, attacked: false };
+      } else {
+        board[startPosition + i * size] = { ship, attacked: false };
+      }
     }
   };
 
-  return { getBoard, placeShip };
+  return { getBoard, changePlacementDirection, placeShip };
 }
