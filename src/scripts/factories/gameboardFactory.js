@@ -29,15 +29,40 @@ export default function gameboardFactory(size) {
     placeHorizontal = !placeHorizontal;
   };
 
-  const placeShip = (startPosition, ship) => {
+  const createCoordinateArray = (startPosition, ship) => {
     const length = ship.getLength();
+    const coordinateArray = [];
 
     for (let i = 0; i < length; i++) {
       if (placeHorizontal) {
-        board[startPosition + i] = { ship, attacked: false };
+        coordinateArray.push(startPosition + i);
       } else {
-        board[startPosition + i * size] = { ship, attacked: false };
+        coordinateArray.push(startPosition + i * size);
       }
+    }
+
+    return coordinateArray;
+  };
+
+  const checkPlacementValidity = (coordinateArray) => {
+    const shipCollision = coordinateArray.some(
+      (coordinate) => board[coordinate].ship
+    );
+
+    if (shipCollision) {
+      return false;
+    }
+
+    return true;
+  };
+
+  const placeShip = (startPosition, ship) => {
+    const shipCoordinates = createCoordinateArray(startPosition, ship);
+
+    if (checkPlacementValidity(shipCoordinates)) {
+      shipCoordinates.forEach((coordinate) => {
+        board[coordinate] = { ship, attacked: false };
+      });
     }
   };
 

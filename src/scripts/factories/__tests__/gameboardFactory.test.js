@@ -88,5 +88,15 @@ describe('Gameboard Factory', function () {
 
       expect(testBoard.getBoard()).toEqual(comparisonBoard);
     });
+
+    test('prevents collisions with other ships', function () {
+      testBoard.placeShip(0, shortShip);
+      testBoard.changePlacementDirection();
+      testBoard.placeShip(0, longShip);
+      comparisonBoard[0] = { ship: shortShip, attacked: false };
+      comparisonBoard[1] = { ship: shortShip, attacked: false };
+
+      expect(testBoard.getBoard()).toEqual(comparisonBoard);
+    });
   });
 });
