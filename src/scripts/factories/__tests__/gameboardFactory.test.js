@@ -107,4 +107,43 @@ describe('Gameboard Factory', function () {
       expect(testBoard.getBoard()).toEqual(comparisonBoard);
     });
   });
+
+  describe('Handle Attacks', function () {
+    let shortShip;
+    let testBoard;
+
+    beforeAll(() => {
+      const mockShip = jest.fn((length) => {
+        const getLength = () => {
+          return length;
+        };
+
+        const markHit = jest.fn();
+
+        return { getLength, markHit };
+      });
+
+      shortShip = mockShip(2);
+    });
+
+    beforeEach(() => {
+      testBoard = gameboardFactory(10);
+      testBoard.placeShip(11, shortShip);
+      comparisonBoard[11] = { ship: shortShip, attacked: false };
+      comparisonBoard[12] = { ship: shortShip, attacked: false };
+    });
+
+    test('unattacked cell is marked as attacked', function () {
+      testBoard.receiveAttack(5);
+      comparisonBoard[5] = { ship: null, attacked: true };
+
+      expect(testBoard.getBoard()).toEqual(comparisonBoard);
+    });
+
+    test('previously attacked cell is not attacked again', function () {
+      testBoard.receiveAttack(5);
+
+      expect(testBoard.receiveAttack(5)).toBeFalsy();
+    });
+  });
 });

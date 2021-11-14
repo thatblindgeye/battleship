@@ -82,5 +82,15 @@ export default function gameboardFactory(size = 10) {
     }
   };
 
-  return { getBoard, changePlacementDirection, placeShip };
+  const receiveAttack = (coordinate) => {
+    if (board[coordinate].attacked) {
+      return false;
+    }
+
+    board[coordinate].attacked = true;
+
+    return true;
+  };
+
+  return { getBoard, changePlacementDirection, placeShip, receiveAttack };
 }
