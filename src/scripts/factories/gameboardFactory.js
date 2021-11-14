@@ -1,3 +1,4 @@
+/* eslint-disable no-else-return */
 export default function gameboardFactory(size) {
   // Handles if size arg is not a number or is not greater than 0, while still allowing the factory to be called without any parameter passed in
   if ((typeof size !== 'number' && size !== undefined) || size <= 0) {
@@ -21,7 +22,20 @@ export default function gameboardFactory(size) {
     return cellsArray;
   };
 
+  /*
+  creates an array of the indices that make up the right-most edge of the board, to be utilized for checking placement validity
+  */
+  const createEdgeArray = () => {
+    const edgeArray = [];
+    for (let i = 1; i <= size; i++) {
+      edgeArray.push(i * size - 1);
+    }
+
+    return edgeArray;
+  };
+
   const board = createBoard();
+  const boardRightEdge = createEdgeArray();
   const getBoard = () => board;
 
   let placeHorizontal = true;
@@ -45,14 +59,20 @@ export default function gameboardFactory(size) {
   };
 
   const checkPlacementValidity = (coordinateArray) => {
-    const shipCollision = coordinateArray.some(
-      (coordinate) => board[coordinate].ship
-    );
+    const hasCollision = coordinateArray.some((coordinate, index) => {
+      if (boardRightEdge.includes(coordinate) && placeHorizontal) {
+        return index !== coordinateArray.length - 1;
+      } else if (board[coordinate]) {
+        return board[coordinate].ship;
+      }
 
-    if (shipCollision) {
+      // handles ships that would overflow the last row of the board
+      return !board[coordinate];
+    });
+
+    if (hasCollision) {
       return false;
     }
-
     return true;
   };
 

@@ -98,5 +98,13 @@ describe('Gameboard Factory', function () {
 
       expect(testBoard.getBoard()).toEqual(comparisonBoard);
     });
+
+    test('prevents collisions with board edges', function () {
+      testBoard.placeShip(9, shortShip);
+      testBoard.changePlacementDirection();
+      testBoard.placeShip(90, longShip);
+
+      expect(testBoard.getBoard()).toEqual(comparisonBoard);
+    });
   });
 });
