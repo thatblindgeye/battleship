@@ -1,18 +1,13 @@
 /* eslint-disable no-else-return */
-export default function gameboardFactory(size) {
+export default function gameboardFactory(size = 10) {
   // Handles if size arg is not a number or is not greater than 0, while still allowing the factory to be called without any parameter passed in
+  // Consider throwing an error if size parameter is too small/large
   if ((typeof size !== 'number' && size !== undefined) || size <= 0) {
     throw new Error('Gameboard size must be a number greater than 0');
   }
 
   const createBoard = () => {
-    let totalCells;
-    // Insert error to limit board size?
-    if (size) {
-      totalCells = size * size;
-    } else {
-      totalCells = 100;
-    }
+    const totalCells = size * size;
 
     const cellsArray = [];
     for (let i = 0; i < totalCells; i++) {
@@ -60,13 +55,14 @@ export default function gameboardFactory(size) {
 
   const checkPlacementValidity = (coordinateArray) => {
     const hasCollision = coordinateArray.some((coordinate, index) => {
+      // handles ships that would overflow along the last column of the board only when a ship would be placed horizontally; vertical ships would have valid placement when this condition is true
       if (boardRightEdge.includes(coordinate) && placeHorizontal) {
         return index !== coordinateArray.length - 1;
       } else if (board[coordinate]) {
         return board[coordinate].ship;
       }
 
-      // handles ships that would overflow the last row of the board
+      // handles ships that would overflow along the last row of the board
       return !board[coordinate];
     });
 
