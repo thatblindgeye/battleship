@@ -3,7 +3,7 @@ import shipFactory from '../shipFactory';
 describe('Ship Factory', function () {
   let testShip;
 
-  beforeAll(() => {
+  beforeEach(() => {
     testShip = shipFactory(2);
   });
 
