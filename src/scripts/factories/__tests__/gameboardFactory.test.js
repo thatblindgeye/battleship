@@ -110,27 +110,29 @@ describe('Gameboard Factory', function () {
 
   describe('Handle Attacks', function () {
     let shortShip;
+    let mediumShip;
+    let longShip;
     let testBoard;
 
     beforeAll(() => {
-      const mockShip = jest.fn((length) => {
+      const mockShip = jest.fn((length, sunk) => {
         const getLength = () => {
           return length;
         };
 
         const markHit = jest.fn();
+        const isSunk = () => sunk;
 
-        return { getLength, markHit };
+        return { getLength, markHit, isSunk };
       });
 
-      shortShip = mockShip(2);
+      shortShip = mockShip(2, true);
+      mediumShip = mockShip(3, true);
+      longShip = mockShip(5, false);
     });
 
     beforeEach(() => {
       testBoard = gameboardFactory(10);
-      testBoard.placeShip(11, shortShip);
-      comparisonBoard[11] = { ship: shortShip, attacked: false };
-      comparisonBoard[12] = { ship: shortShip, attacked: false };
     });
 
     test('unattacked cell is marked as attacked', function () {
@@ -144,6 +146,26 @@ describe('Gameboard Factory', function () {
       testBoard.receiveAttack(5);
 
       expect(testBoard.receiveAttack(5)).toBeFalsy();
+    });
+
+    test('ship markHit function is called when cell is attacked', function () {
+      testBoard.placeShip(2, longShip);
+      testBoard.receiveAttack(2);
+
+      expect(longShip.markHit).toHaveBeenCalled();
+    });
+
+    test('all ships on a board are not sunk', function () {
+      testBoard.placeShip(11, shortShip);
+      testBoard.placeShip(41, mediumShip);
+      testBoard.placeShip(61, longShip);
+      expect(testBoard.isFleetSunk()).toBeFalsy();
+    });
+
+    test('all ships on a board are sunk', function () {
+      testBoard.placeShip(11, shortShip);
+      testBoard.placeShip(41, mediumShip);
+      expect(testBoard.isFleetSunk()).toBeTruthy();
     });
   });
 });
